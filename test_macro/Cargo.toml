@@ -1,0 +1,10 @@
+cargo-features = ["edition"]
+
+[package]
+name = "test_macro"
+version = "0.1.0"
+authors = ["John Renner <john@jrenner.net>"]
+edition = "2018"
+
+[dependencies]
+"libtest_macro" = { path = "libtest_macro" }
