@@ -1,0 +1,17 @@
+cargo-features = ["edition"]
+
+[package]
+authors = ["The Rust Project Developers"]
+name = "test2"
+version = "0.0.0"
+edition = "2018"
+
+[lib]
+name = "test2"
+path = "lib.rs"
+crate-type = ["dylib", "rlib"]
+
+[dependencies]
+getopts = "0.2"
+term = "0.5.1"
+test2_macro = {path = "./libtest2_macro"}

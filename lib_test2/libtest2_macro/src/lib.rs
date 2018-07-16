@@ -12,7 +12,7 @@ use syn::spanned::Spanned;
 use quote::*;
 
 #[proc_macro_attribute]
-pub fn fancy_test(_attr: TokenStream, input: TokenStream) -> TokenStream {
+pub fn test2(_attr: TokenStream, input: TokenStream) -> TokenStream {
     let mut func: ItemFn = syn::parse(input).unwrap();
     let ident = &func.ident;
     let test_path = syn::LitStr::new(&format!("::{}", ident), proc_macro2::Span::call_site());
@@ -31,6 +31,7 @@ pub fn fancy_test(_attr: TokenStream, input: TokenStream) -> TokenStream {
     let func_span = func.span();
     let spanned_func = quote_spanned!(func_span=> #func);
     let res = quote_spanned!(func_span=>
+        #[test = "test2"]
         #[allow(dead_code,non_upper_case_globals)]
         const #ident: ::test::TestDescAndFn = ::test::TestDescAndFn {
             desc: ::test::TestDesc {
@@ -45,6 +46,5 @@ pub fn fancy_test(_attr: TokenStream, input: TokenStream) -> TokenStream {
             })
         };
     );
-    
     res.into()
 }

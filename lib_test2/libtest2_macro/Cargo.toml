@@ -1,7 +1,7 @@
 cargo-features = ["edition"]
 
 [package]
-name = "libtest_macro"
+name = "test2_macro"
 version = "0.1.0"
 authors = ["John Renner <john@jrenner.net>"]
 edition = '2018'
@@ -12,4 +12,4 @@ proc-macro = true
 [dependencies]
 syn = { version = '0.14', features = ['full'] }
 quote = '0.6'
-proc-macro2 = "0.4.4"
+proc-macro2 = { version = "0.4.4", features = ['nightly'] }
