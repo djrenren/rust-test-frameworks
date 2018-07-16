@@ -31,16 +31,16 @@ pub fn test2(_attr: TokenStream, input: TokenStream) -> TokenStream {
     let func_span = func.span();
     let spanned_func = quote_spanned!(func_span=> #func);
     let res = quote_spanned!(func_span=>
-        #[test = "test2"]
         #[allow(dead_code,non_upper_case_globals)]
-        const #ident: ::test::TestDescAndFn = ::test::TestDescAndFn {
-            desc: ::test::TestDesc {
+        #[test = "test2"]
+        pub const #ident: ::test2::TestDescAndFn = ::test2::TestDescAndFn {
+            desc: ::test2::TestDesc {
                 allow_fail: #allow_fail,
                 ignore: #ignore,
-                should_panic: ::test::ShouldPanic::No,
-                name: ::test::StaticTestName(concat!(module_path!(), #test_path)),
+                should_panic: ::test2::ShouldPanic::No,
+                name: ::test2::StaticTestName(concat!(module_path!(), #test_path)),
             },
-            testfn: ::test::TestFn::StaticTestFn(|| {
+            testfn: ::test2::TestFn::StaticTestFn(|| {
                 #spanned_func
                 #ident()
             })
