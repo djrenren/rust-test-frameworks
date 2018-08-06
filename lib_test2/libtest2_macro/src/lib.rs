@@ -1,7 +1,3 @@
-#![feature(rust_2018_preview)]
-#![feature(proc_macro)]
-#![feature(proc_macro_non_items)]
-#![feature(test)]
 extern crate proc_macro;
 
 use proc_macro::TokenStream;
@@ -32,7 +28,7 @@ pub fn test2(_attr: TokenStream, input: TokenStream) -> TokenStream {
     let spanned_func = quote_spanned!(func_span=> #func);
     let res = quote_spanned!(func_span=>
         #[allow(dead_code,non_upper_case_globals)]
-        #[test = "test2"]
+        #[test_case]
         pub const #ident: ::test2::TestDescAndFn = ::test2::TestDescAndFn {
             desc: ::test2::TestDesc {
                 allow_fail: #allow_fail,
