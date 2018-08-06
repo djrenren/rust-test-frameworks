@@ -2,9 +2,9 @@
 #![test_runner(crate::runner)]
 
 #[cfg(test)]
-fn runner(ts: &[&Fn() -> i32]) {
+fn runner(ts: &[&i32]) {
     for t in ts {
-        if t() == 0 {
+        if **t == 0 {
             println!("PASSED!");
         } else {
             println!("Failed!");
@@ -13,11 +13,7 @@ fn runner(ts: &[&Fn() -> i32]) {
 }
 
 #[test_case]
-fn test1() -> i32 {
-    1
-}
+const TEST_1: i32 = 1;
 
 #[test_case]
-fn test2() -> i32 {
-    0
-}
+const TEST_2: i32 = 0;
